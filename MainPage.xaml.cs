@@ -9,16 +9,21 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ValueThing.Resources;
 using System.IO;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using Microsoft.Phone.Tasks;
+using System.Windows.Shapes;
 
 namespace ValueThing
 {
     public partial class MainPage : PhoneApplicationPage
     {
         // Constructor
+        string searchText="";
         public MainPage()
         {
             InitializeComponent();
-
+           
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
 
@@ -38,6 +43,115 @@ namespace ValueThing
         private void BattleClick(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private Grid createlistview( JSearch jSearchs)
+        {
+            Grid item = new Grid();
+            item.Name = jSearchs.URL;
+            item.Height = 150;
+            item.Tap += item_Tap;
+            //new and set value
+            TextBlock title = new TextBlock();
+            TextBlock source = new TextBlock();
+            TextBlock price = new TextBlock();
+            Image image = new Image();
+            title.Text = jSearchs.Title;
+            source.Text = jSearchs.Source;
+            price.Text ="$"+ jSearchs.Price;
+            image.Source = new BitmapImage(new Uri(jSearchs.Img, UriKind.RelativeOrAbsolute));
+            //set font
+            source.FontSize = 15;
+            title.FontSize = 30;
+            price.FontSize = 50;
+            price.Foreground = new SolidColorBrush(Colors.Red);
+            source.Foreground = new SolidColorBrush(Colors.Orange);
+            title.TextWrapping = TextWrapping.Wrap;//換行         
+            //設定邊界長寬
+            title.Margin = new Thickness(110, 0, 0, 0);
+            source.Margin = new Thickness(110, 110, 0, 0);
+            price.Margin = new Thickness(0, 0, 1, 0);
+            image.Width = 100;
+            image.Height = 100;
+            title.Height = 40 * 2;
+            title.Width = item.Width;
+            price.Width = item.Width;
+            //設定對齊
+            image.HorizontalAlignment = HorizontalAlignment.Left;
+            title.HorizontalAlignment = HorizontalAlignment.Left;
+            source.HorizontalAlignment = HorizontalAlignment.Left;
+            price.HorizontalAlignment = HorizontalAlignment.Right;
+            title.VerticalAlignment = VerticalAlignment.Top;
+            image.VerticalAlignment = VerticalAlignment.Top;
+           // source.VerticalAlignment = VerticalAlignment.Bottom;
+            price.VerticalAlignment = VerticalAlignment.Bottom;
+            image.VerticalAlignment = VerticalAlignment.Center;
+
+
+
+            Line line = new Line();
+            line.Stroke = new SolidColorBrush(Colors.Red);
+            line.StrokeThickness = 2;
+            Canvas cas = new Canvas();
+            cas.Children.Add(line);
+
+            cas.VerticalAlignment = VerticalAlignment.Top;
+            //最後add進去
+            item.Children.Add(cas);
+            item.Children.Add(image);
+            item.Children.Add(title);
+            item.Children.Add(source);
+            item.Children.Add(price);
+            
+            return item;
+
+        }
+
+        void item_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+           string Url=((Grid)sender).Name;
+           WebBrowserTask task = new WebBrowserTask();
+           task.URL = Url;
+           task.Show();
+            //throw new NotImplementedException();
+
+        }
+
+        private void Search_click(object sender, RoutedEventArgs e)
+        {
+
+            new Searcher(keyWord.Text, SearchData).Search();
+            searchText = keyWord.Text;
+        }
+
+        private void SearchData(JSearch[] jSearchs)
+        {
+            Dispatcher.BeginInvoke(() => {
+                contentStackPanel.Children.Clear();          
+
+                if (jSearchs.Length == 0)
+                    contentStackPanel.Children.Add(fileNotFound());
+                for (int i = 0; i < jSearchs.Length; i++)
+                {
+                    contentStackPanel.Children.Add(createlistview(jSearchs[i]));
+                    
+
+                }
+                    
+              
+                
+                
+            });
+        }
+
+        private TextBlock fileNotFound()
+        {
+            TextBlock notFound =new TextBlock();
+            notFound.Text = "'"+searchText+"'can't find any result.";
+            notFound.TextAlignment = TextAlignment.Center;
+            notFound.Height = 100;
+            
+            return notFound;
         }
 
         // Sample code for building a localized ApplicationBar
