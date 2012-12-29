@@ -247,6 +247,24 @@ namespace ValueThing
             return notFound;
         }
 
+        private Grid createInfoItem(JSearch jSearchs)
+        {
+            Grid item = new Grid();
+
+            TextBlock title = new TextBlock();
+            TextBlock content = new TextBlock();
+            TextBlock url = new TextBlock();
+            Image img = new Image();
+            title.VerticalAlignment = VerticalAlignment.Top;
+            content.VerticalAlignment = VerticalAlignment.Center;
+            url.VerticalAlignment = VerticalAlignment.Bottom;
+            
+
+
+            return item;
+
+        }
+
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{

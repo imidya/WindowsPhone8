@@ -47,8 +47,8 @@
                 <Grid HorizontalAlignment="Left" Height="638" VerticalAlignment="Top" Width="456" Margin="10,0,-10,0">
                     <StackPanel HorizontalAlignment="Left" Height="106" VerticalAlignment="Top" Width="453" Margin="10,10,-7,0">
                         <Grid Height="118">
-                            <TextBox Name="keyWord"  TextWrapping="Wrap" Text="" Margin="-17,10,124,10" />
-                            <Button Content="Search" Margin="314,13,10,10" Click="Search_click"/>  
+                            <toolkit:PhoneTextBox Name="keyWord"  TextWrapping="Wrap" Hint="Lumia 920" Margin="-17,10,124,38" />
+                            <Button Content="Search" Margin="314,10,10,38" Click="Search_click"/>  
                         </Grid>
                     </StackPanel>
                     <ScrollViewer Name="contentScroller" Margin="0,121,0,10" Height="512">
@@ -62,8 +62,8 @@
             <!--Pivot item two-->
             <phone:PivotItem Header="Compare" Margin="0,32,0,-4">
                 <StackPanel HorizontalAlignment="Center" Width="480">
-                    <toolkit:PhoneTextBox Name="Production1" Hint="Production 1" Margin="20,0" />
-                    <toolkit:PhoneTextBox Name="Production2" Hint="Production 2" Margin="20,0" />
+                    <toolkit:PhoneTextBox Name="Production1" Hint="Production 1" Margin="20,0" Height="70" />
+                    <toolkit:PhoneTextBox Name="Production2" Hint="Production 2" Margin="20,0" Height="70" />
                     <Button Content="Battle" Margin="272,0,20,0" Click="BattleClick" />
                     <StackPanel Name="CompareResult" Margin="0,50,0,0" Visibility="Collapsed">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="400" VerticalAlignment="Center">
@@ -83,6 +83,27 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
+            </phone:PivotItem>
+            <!--Pivot item 3-->
+            <phone:PivotItem Header="Info" Margin="10,-22.012,21.5,15.012" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <phone:PivotItem.RenderTransform>
+                    <CompositeTransform SkewY="0.188" TranslateY="0.747"/>
+                </phone:PivotItem.RenderTransform>
+                <Grid HorizontalAlignment="Left" Height="638" VerticalAlignment="Top" Width="456" Margin="10,0,-10,0">
+                    <ScrollViewer Name="infoScroller" Margin="0,0,0,10" Height="512">
+                        <StackPanel  Name="infoStackPanel" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="446"  RenderTransformOrigin="0.5,0.5" Height="502">
+                            <TextBlock TextWrapping="Wrap" Text="Web"/>
+
+                            <StackPanel x:Name="webStackPanel" />
+                            <TextBlock TextWrapping="Wrap" Text="Blog"/>
+                            <StackPanel x:Name="blogStackPanel" />
+                            
+                        </StackPanel>
+                        
+
+                    </ScrollViewer>
+                </Grid>
+                <!--Double line list with text wrapping-->
             </phone:PivotItem>
         </phone:Pivot>
         
