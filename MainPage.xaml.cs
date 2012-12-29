@@ -47,8 +47,6 @@ namespace ValueThing
 
             new Rater(Production1.Text, UpdateProduction1Rate).Rate();
             new Rater(Production2.Text, UpdateProduction2Rate).Rate();
-            new Searcher(Production1.Text, UpdateProduction1Image).Search();
-            new Searcher(Production2.Text, UpdateProduction2Image).Search();
         }
 
         private void SetBusy(bool busy = true)
@@ -68,35 +66,11 @@ namespace ValueThing
         private void UpdateDone()
         {
             dataUpdateCount++;
-            if (dataUpdateCount >= 4)
+            if (dataUpdateCount >= 2)
             {
                 CompareResult.Visibility = System.Windows.Visibility.Visible;
                 SetBusy(false);
             }
-        }
-
-        private void UpdateProduction2Image(JSearch[] jSearchs)
-        {
-            Dispatcher.BeginInvoke(() =>
-            {
-                if( jSearchs.Length > 0 )
-                    Production2Image.Source = new BitmapImage(new Uri(jSearchs[0].Img, UriKind.Absolute));
-                else
-                    Production2Image.Source = new BitmapImage(new Uri(@"assets\DeleteRed.png", UriKind.Relative));
-                UpdateDone();
-            });
-        }
-
-        private void UpdateProduction1Image(JSearch[] jSearchs)
-        {
-            Dispatcher.BeginInvoke(() =>
-            {
-                if (jSearchs.Length > 0)
-                    Production1Image.Source = new BitmapImage(new Uri(jSearchs[0].Img, UriKind.Absolute));
-                else
-                    Production1Image.Source = new BitmapImage(new Uri(@"assets\DeleteRed.png", UriKind.Relative));
-                UpdateDone();
-            });
         }
 
         private void UpdateProduction2Rate(JRate jRate)
@@ -104,6 +78,10 @@ namespace ValueThing
             Dispatcher.BeginInvoke(() =>
             {
                 Production2Rate.Text = jRate.Rate.ToString();
+                if( jRate.Url != null )
+                    Production2Image.Source = new BitmapImage(new Uri(jRate.Url, UriKind.Absolute));
+                else
+                    Production2Image.Source = new BitmapImage(new Uri(@"assets\DeleteRed.png", UriKind.Relative));
                 UpdateDone();
             });
         }
@@ -113,25 +91,11 @@ namespace ValueThing
             Dispatcher.BeginInvoke(() =>
             {
                 Production1Rate.Text = jRate.Rate.ToString();
+                if (jRate.Url != null)
+                    Production1Image.Source = new BitmapImage(new Uri(jRate.Url, UriKind.Absolute));
+                else
+                    Production1Image.Source = new BitmapImage(new Uri(@"assets\DeleteRed.png", UriKind.Relative));
                 UpdateDone();
-            });
-        }
-
-        private void Update(JSearch[] jSearchs)
-        {
-            Dispatcher.BeginInvoke(() =>
-            {
-                String showMessage ="";
-                for (int i = 0; i < jSearchs.Length; i++)
-                {
-                    showMessage += i + "\n";
-                    showMessage += "url: " + jSearchs[i].URL + "\n";
-                    showMessage += "source: " + jSearchs[i].Source + "\n";
-                    showMessage += "price: " + jSearchs[i].Price + "\n";
-                    showMessage += "img: " + jSearchs[i].Img + "\n";
-                    showMessage += "title: " + jSearchs[i].Title + "\n";
-                }
-                MessageBox.Show(showMessage);
             });
         }
 
