@@ -23,6 +23,6 @@ namespace ValueThing
         public string Title;
 
         [JsonProperty(PropertyName = "price")]
-        public string Price { get; set; }
+        public string Price;
     }
 }
