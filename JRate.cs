@@ -14,5 +14,8 @@ namespace ValueThing
 
         [JsonProperty(PropertyName = "rate")]
         public int Rate;
+
+        [JsonProperty(PropertyName = "url")]
+        public string Url;
     }
 }

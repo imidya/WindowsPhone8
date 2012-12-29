@@ -32,3 +32,6 @@
 /obj/Debug/XapCacheFile.xml
 /*.user
 /*.user
+/obj/Debug/CircularProgressBar.g.i.cs
+/obj/Debug/TempPE/Resources.AppResources.Designer.cs.dll
+/obj/Debug/WindowsPhoneControl1.g.i.cs
