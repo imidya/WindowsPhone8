@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -54,21 +55,28 @@
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="second">
-                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="456">
-                    <TextBox Text="Production 1" />
-                    <TextBox Text="Production 2" />
-                    <Button Content="Compare" Margin="272,0,0,0"/>
-                    <ScrollViewer Height="383">
-                        <StackPanel>
-                            <TextBlock Text="Test 1" Height="100"></TextBlock>
-                            <TextBlock Text="Test 1" Height="100"></TextBlock>
-                            <TextBlock Text="Test 1" Height="100"></TextBlock>
-                            <TextBlock Text="Test 1" Height="100"></TextBlock>
-                            <TextBlock Text="Test 1" Height="100"></TextBlock>
-                            <TextBlock Text="Test 1" Height="100"></TextBlock>
+            <phone:PivotItem Header="Compare" Margin="0,32,0,-4">
+                <StackPanel HorizontalAlignment="Center" Margin="0,0,0,0">
+                    <toolkit:PhoneTextBox Hint="Production 1" />
+                    <toolkit:PhoneTextBox Hint="Production 2" />
+                    <Button Content="Battle" Margin="272,0,0,0" Click="BattleClick"/>
+                    <StackPanel Margin="0,50,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" VerticalAlignment="Center">
+                            <Image Width="100" Height="100" Source="http://nyocommercialobserver.files.wordpress.com/2012/09/windows_logo.png" />
+                            <TextBlock Text="V.S." Width="100" TextAlignment="Center" FontSize="48" Style="{StaticResource JumpListAlphabetStyle}" Margin="0,15,0,0" />
+                            <Image Width="100" Height="100"  Source="https://twimg0-a.akamaihd.net/profile_images/1414203815/apple.png" />
                         </StackPanel>
-                    </ScrollViewer>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="300" VerticalAlignment="Center">
+                            <TextBlock Width="100" Height="75" Text="100" FontSize="48" TextAlignment="Center" />
+                            <TextBlock Width="100" />
+                            <TextBlock Width="100" Height="75" Text="100" FontSize="48" TextAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="320" VerticalAlignment="Center">
+                            <Button Width="110" Height="75" Content="more" />
+                            <TextBlock Width="100" />
+                            <Button Width="110" Height="75" Content="more" />
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>

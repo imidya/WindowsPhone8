@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ValueThing.Resources;
+using System.IO;
 
 namespace ValueThing
 {
@@ -32,6 +33,11 @@ namespace ValueThing
             {
                 App.ViewModel.LoadData();
             }
+        }
+
+        private void BattleClick(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         // Sample code for building a localized ApplicationBar
