@@ -102,8 +102,6 @@ namespace ValueThing
             });
         }
 
-<<<<<<< HEAD
-=======
         private void Update(JSearch[] jSearchs)
         {
             Dispatcher.BeginInvoke(() =>
@@ -231,7 +229,6 @@ namespace ValueThing
             return notFound;
         }
 
->>>>>>> 42491ac85fcfc0a2e6bec5c706e3482f9bda64bd
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{
