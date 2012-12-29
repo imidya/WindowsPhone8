@@ -188,13 +188,10 @@ namespace ValueThing
            WebBrowserTask task = new WebBrowserTask();
            task.URL = Url;
            task.Show();
-            //throw new NotImplementedException();
-
         }
 
         private void Search_click(object sender, RoutedEventArgs e)
         {
-
             new Searcher(keyWord.Text, SearchData).Search();
             searchText = keyWord.Text;
         }
@@ -209,13 +206,7 @@ namespace ValueThing
                 for (int i = 0; i < jSearchs.Length; i++)
                 {
                     contentStackPanel.Children.Add(createlistview(jSearchs[i]));
-                    
-
                 }
-                    
-              
-                
-                
             });
         }
 
