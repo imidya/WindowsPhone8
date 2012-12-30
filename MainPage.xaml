@@ -47,7 +47,7 @@
                 <Grid HorizontalAlignment="Left" Height="638" VerticalAlignment="Top" Width="456" Margin="10,0,-10,0">
                     <StackPanel HorizontalAlignment="Left" Height="106" VerticalAlignment="Top" Width="453" Margin="10,10,-7,0">
                         <Grid Height="118">
-                            <toolkit:PhoneTextBox Name="keyWord"  TextWrapping="Wrap" Hint="Lumia 920" Margin="-17,10,124,38" />
+                            <toolkit:PhoneTextBox Name="keyWord"  TextWrapping="Wrap" Hint="Lumia 920" Margin="10,10,124,38" />
                             <Button Content="Search" Margin="314,10,10,38" Click="Search_click"/>  
                         </Grid>
                     </StackPanel>
