@@ -137,9 +137,10 @@ namespace ValueThing
             image.Source = new BitmapImage(new Uri(jSearchs.Img, UriKind.RelativeOrAbsolute));
             //set font
             title.FontWeight = FontWeights.Bold;
-            source.FontSize = 15;
+            source.FontSize = 19;
             title.FontSize = 30;
             price.FontSize = 50;
+            
             price.Foreground = new SolidColorBrush(Colors.Red);
             source.Foreground = new SolidColorBrush(Colors.Orange);
             title.TextWrapping = TextWrapping.Wrap;//換行         
@@ -254,7 +255,9 @@ namespace ValueThing
             img.Source = imgSourceR;
 
             title.FontWeight = FontWeights.Bold;
-            title.Foreground = new SolidColorBrush( Color.FromArgb(255,0,102,204));
+            title.Foreground = new SolidColorBrush( Color.FromArgb(255,255,122,122));
+            //title.Foreground = new SolidColorBrush(Colors.Green);
+            //content.Foreground = new SolidColorBrush(Colors.DarkGray);
             url.Foreground = new SolidColorBrush(Colors.Orange);
             title.FontSize = 40;
             url.FontSize = 15;
@@ -276,7 +279,7 @@ namespace ValueThing
             Canvas test = drawLine();
             item.Children.Add(test);
 
-            infoStack.Margin = new Thickness(0, 0, 50, 0);
+            infoStack.Margin = new Thickness(0, 0, 50, 20);
             img.HorizontalAlignment = HorizontalAlignment.Right;
             item.Margin = new Thickness(0, 20, 0, 0);
             return item;
@@ -303,7 +306,9 @@ namespace ValueThing
             img.Source = imgSourceR;
 
             title.FontWeight = FontWeights.Bold;
-            title.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 102, 204));
+            title.Foreground = new SolidColorBrush(Color.FromArgb(255, 102,255 ,102));
+            //title.Foreground = new SolidColorBrush(Colors.Green);
+            //content.Foreground = new SolidColorBrush(Colors.Brown);
             url.Foreground = new SolidColorBrush(Colors.Orange);
             title.FontSize = 40;
             url.FontSize = 15;
@@ -324,7 +329,7 @@ namespace ValueThing
             item.Children.Add(img);
             item.Children.Add(drawLine());
 
-            infoStack.Margin = new Thickness(0, 0, 50, 0);
+            infoStack.Margin = new Thickness(0, 0, 50, 20);
             img.HorizontalAlignment = HorizontalAlignment.Right;
             item.Margin = new Thickness(0, 20, 0, 0);
             return item;

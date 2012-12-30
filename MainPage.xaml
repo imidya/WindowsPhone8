@@ -16,7 +16,7 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
 
         <!-- LOCALIZATION NOTE:
             To localize the displayed strings copy their values to appropriately named
@@ -88,10 +88,10 @@
                 <Grid HorizontalAlignment="Left" Height="638" VerticalAlignment="Top" Width="456" Margin="10,0,-10,0">
                     <ScrollViewer Name="infoScroller" Margin="0,0,0,10" Height="512">
                         <StackPanel  Name="infoStackPanel" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="446"  RenderTransformOrigin="0.5,0.5">
-                            <TextBlock TextWrapping="Wrap" Text="Web" FontSize="50" FontWeight="Bold"/>
+                            <TextBlock TextWrapping="Wrap" Text="Web" FontSize="50" FontWeight="Bold" Foreground="#FF7A7AFF"/>
                             <TextBlock Name="web_noinfo" TextWrapping="Wrap" Text="No information." HorizontalAlignment="Center"/>
                             <StackPanel x:Name="webStackPanel" />
-                            <TextBlock TextWrapping="Wrap" Text="Blog" FontSize="50"  FontWeight="Bold"/>
+                            <TextBlock TextWrapping="Wrap" Text="Blog" FontSize="50"  FontWeight="Bold" Foreground="#FF7A7AFF"/>
                             <StackPanel x:Name="blogStackPanel" />
                             <TextBlock Name="blog_noinfo"  TextWrapping="Wrap" Text="No information." HorizontalAlignment="Center"/>
 
