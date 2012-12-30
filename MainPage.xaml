@@ -66,15 +66,15 @@
                     <toolkit:PhoneTextBox Name="Production2" Hint="Production 2" Margin="20,0" Height="70" />
                     <Button Content="Battle" Margin="272,0,20,0" Click="BattleClick" />
                     <StackPanel Name="CompareResult" Margin="0,50,0,0" Visibility="Collapsed">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="400" VerticalAlignment="Center">
-                            <Image Name="Production1Image" Width="150" Height="100" Source="http://nyocommercialobserver.files.wordpress.com/2012/09/windows_logo.png" />
-                            <TextBlock Text="V.S." Width="100" TextAlignment="Center" FontSize="48" Style="{StaticResource JumpListAlphabetStyle}" Margin="0,15,0,0" />
-                            <Image Name="Production2Image" Width="150" Height="100"  Source="https://twimg0-a.akamaihd.net/profile_images/1414203815/apple.png" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="460" VerticalAlignment="Center">
+                            <Image Name="Production1Image" Width="180" Height="180" Source="http://nyocommercialobserver.files.wordpress.com/2012/09/windows_logo.png" />
+                            <TextBlock Text="V.S." Width="100" TextAlignment="Center" FontSize="48" Style="{StaticResource JumpListAlphabetStyle}" Margin="0,15,0,0" Height="61" />
+                            <Image Name="Production2Image" Width="180" Height="180"  Source="https://twimg0-a.akamaihd.net/profile_images/1414203815/apple.png" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="400" VerticalAlignment="Center">
-                            <TextBlock Name="Production1Rate" Width="150" Height="75" Text="100" FontSize="48" TextAlignment="Center" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="460" VerticalAlignment="Center">
+                            <TextBlock Name="Production1Rate" Width="180" Height="75" Text="100" FontSize="48" TextAlignment="Center" />
                             <TextBlock Width="100" />
-                            <TextBlock Name="Production2Rate" Width="150" Height="75" Text="100" FontSize="48" TextAlignment="Center" />
+                            <TextBlock Name="Production2Rate" Width="180" Height="75" Text="100" FontSize="48" TextAlignment="Center" />
                         </StackPanel>
                      
                     </StackPanel>
