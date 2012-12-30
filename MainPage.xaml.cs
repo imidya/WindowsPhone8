@@ -136,6 +136,7 @@ namespace ValueThing
             price.Text ="$"+ jSearchs.Price;
             image.Source = new BitmapImage(new Uri(jSearchs.Img, UriKind.RelativeOrAbsolute));
             //set font
+            title.FontWeight = FontWeights.Bold;
             source.FontSize = 15;
             title.FontSize = 30;
             price.FontSize = 50;
@@ -158,25 +159,19 @@ namespace ValueThing
             price.HorizontalAlignment = HorizontalAlignment.Right;
             title.VerticalAlignment = VerticalAlignment.Top;
             image.VerticalAlignment = VerticalAlignment.Top;
-           // source.VerticalAlignment = VerticalAlignment.Bottom;
+         
             price.VerticalAlignment = VerticalAlignment.Bottom;
             image.VerticalAlignment = VerticalAlignment.Center;
 
-
-
-            Line line = new Line();
-            line.Stroke = new SolidColorBrush(Colors.Red);
-            line.StrokeThickness = 2;
-            Canvas cas = new Canvas();
-            cas.Children.Add(line);
-
-            cas.VerticalAlignment = VerticalAlignment.Top;
+            item.Margin = new Thickness(0, 20, 0, 0);
+            
             //最後add進去
-            item.Children.Add(cas);
+            
             item.Children.Add(image);
             item.Children.Add(title);
             item.Children.Add(source);
             item.Children.Add(price);
+            item.Children.Add(drawLine());
             
             return item;
 
@@ -193,7 +188,27 @@ namespace ValueThing
         private void Search_click(object sender, RoutedEventArgs e)
         {
             new Searcher(keyWord.Text, SearchData).Search();
+            new Poster(keyWord.Text, PostData).Get();
             searchText = keyWord.Text;
+        }
+
+        private void PostData(JPosts jPosts)
+        {
+             Dispatcher.BeginInvoke(() => {
+                 webStackPanel.Children.Clear();
+                 blogStackPanel.Children.Clear();
+                 if (jPosts.Webs.Length != 0)
+                     web_noinfo.Visibility = Visibility.Collapsed;
+                 if (jPosts.Blogs.Length != 0)
+                     blog_noinfo.Visibility = Visibility.Collapsed;
+                 for (int i = 0; i < jPosts.Webs.Length; i++)                 
+                    webStackPanel.Children.Add(createInfoWebItem(jPosts.Webs[i]));
+                 
+                     
+                 for (int i = 0; i < jPosts.Blogs.Length; i++)
+                    blogStackPanel.Children.Add(createInfoBlogItem(jPosts.Blogs[i])); 
+
+             });
         }
 
         private void SearchData(JSearch[] jSearchs)
@@ -203,10 +218,9 @@ namespace ValueThing
 
                 if (jSearchs.Length == 0)
                     contentStackPanel.Children.Add(fileNotFound());
-                for (int i = 0; i < jSearchs.Length; i++)
-                {
+                for (int i = 0; i < jSearchs.Length; i++)      
                     contentStackPanel.Children.Add(createlistview(jSearchs[i]));
-                }
+
             });
         }
 
@@ -220,24 +234,129 @@ namespace ValueThing
             return notFound;
         }
 
-        private Grid createInfoItem(JSearch jSearchs)
+        private Grid createInfoWebItem(JWeb jweb)
         {
             Grid item = new Grid();
-
+            StackPanel infoStack = new StackPanel();
+            item.Name = jweb.Url;
+            item.Tap+=item_Tap;
             TextBlock title = new TextBlock();
             TextBlock content = new TextBlock();
             TextBlock url = new TextBlock();
             Image img = new Image();
-            title.VerticalAlignment = VerticalAlignment.Top;
-            content.VerticalAlignment = VerticalAlignment.Center;
-            url.VerticalAlignment = VerticalAlignment.Bottom;
+            title.Text = jweb.Title;
+            content.Text = jweb.Content;
+            url.Text = jweb.Url;
+
+
+            Uri uriR = new Uri("/Assets/right_arrow.png", UriKind.Relative);
+            BitmapImage imgSourceR = new BitmapImage(uriR);
+            img.Source = imgSourceR;
+
+            title.FontWeight = FontWeights.Bold;
+            title.Foreground = new SolidColorBrush( Color.FromArgb(255,0,102,204));
+            url.Foreground = new SolidColorBrush(Colors.Orange);
+            title.FontSize = 40;
+            url.FontSize = 15;
+            title.TextWrapping = TextWrapping.Wrap;//換行 
+            title.Height = 60 * 2;
+            if (title.ActualWidth<=430)
+                title.Height = 60 ;
+            img.Width = 50;
+            img.Height = 50;
             
+            content.TextWrapping = TextWrapping.Wrap;//換行  
+ 
+            url.HorizontalAlignment = HorizontalAlignment.Right;
+            infoStack.Children.Add(title);
+            infoStack.Children.Add(content);
+            infoStack.Children.Add(url);
+            item.Children.Add(infoStack);
+            item.Children.Add(img);
+            Canvas test = drawLine();
+            item.Children.Add(test);
 
-
+            infoStack.Margin = new Thickness(0, 0, 50, 0);
+            img.HorizontalAlignment = HorizontalAlignment.Right;
+            item.Margin = new Thickness(0, 20, 0, 0);
             return item;
 
         }
 
+        private Grid createInfoBlogItem(JBlog jblog)
+        {
+            Grid item = new Grid();
+            StackPanel infoStack = new StackPanel();
+            item.Name = jblog.PostUrl;
+            item.Tap += item_Tap;
+            TextBlock title = new TextBlock();
+            TextBlock content = new TextBlock();
+            TextBlock url = new TextBlock();
+            Image img = new Image();
+            title.Text = jblog.Title;
+            content.Text = jblog.Content;
+            url.Text = jblog.PostUrl;
+
+
+            Uri uriR = new Uri("/Assets/right_arrow.png", UriKind.Relative);
+            BitmapImage imgSourceR = new BitmapImage(uriR);
+            img.Source = imgSourceR;
+
+            title.FontWeight = FontWeights.Bold;
+            title.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 102, 204));
+            url.Foreground = new SolidColorBrush(Colors.Orange);
+            title.FontSize = 40;
+            url.FontSize = 15;
+            title.TextWrapping = TextWrapping.Wrap;//換行 
+            title.Height = 60 * 2;
+            if (title.ActualWidth <= 430)
+                title.Height = 60;
+            img.Width = 50;
+            img.Height = 50;
+
+            content.TextWrapping = TextWrapping.Wrap;//換行  
+
+            url.HorizontalAlignment = HorizontalAlignment.Right;
+            infoStack.Children.Add(title);
+            infoStack.Children.Add(content);
+            infoStack.Children.Add(url);
+            item.Children.Add(infoStack);
+            item.Children.Add(img);
+            item.Children.Add(drawLine());
+
+            infoStack.Margin = new Thickness(0, 0, 50, 0);
+            img.HorizontalAlignment = HorizontalAlignment.Right;
+            item.Margin = new Thickness(0, 20, 0, 0);
+            return item;
+            
+        }
+
+        private Canvas drawLine()
+        {
+            Line line = new Line();
+            line.Stroke = new SolidColorBrush(Colors.DarkGray);
+            line.StrokeThickness = 2;
+            Canvas cas = new Canvas();
+            cas.Children.Add(line);
+     
+
+            Point point1 = new Point();
+            point1.X = 0.0;
+            point1.Y = 0.0;
+
+            Point point2 = new Point();
+            point2.X = 500.0;
+            point2.Y = 0.0;
+
+            line.X1 = point1.X;
+            line.Y1 = point1.Y;
+            line.X2 = point2.X;
+            line.Y2 = point2.Y;
+
+            cas.VerticalAlignment = VerticalAlignment.Bottom;
+            return cas;
+    
+           }
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{

@@ -76,11 +76,7 @@
                             <TextBlock Width="100" />
                             <TextBlock Name="Production2Rate" Width="150" Height="75" Text="100" FontSize="48" TextAlignment="Center" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="400" VerticalAlignment="Center">
-                            <Button Width="150" Height="75" Content="more" />
-                            <TextBlock Width="100" />
-                            <Button Width="150" Height="75" Content="more" />
-                        </StackPanel>
+                     
                     </StackPanel>
                 </StackPanel>
             </phone:PivotItem>
@@ -91,13 +87,15 @@
                 </phone:PivotItem.RenderTransform>
                 <Grid HorizontalAlignment="Left" Height="638" VerticalAlignment="Top" Width="456" Margin="10,0,-10,0">
                     <ScrollViewer Name="infoScroller" Margin="0,0,0,10" Height="512">
-                        <StackPanel  Name="infoStackPanel" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="446"  RenderTransformOrigin="0.5,0.5" Height="502">
-                            <TextBlock TextWrapping="Wrap" Text="Web"/>
-
+                        <StackPanel  Name="infoStackPanel" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="446"  RenderTransformOrigin="0.5,0.5">
+                            <TextBlock TextWrapping="Wrap" Text="Web" FontSize="50" FontWeight="Bold"/>
+                            <TextBlock Name="web_noinfo" TextWrapping="Wrap" Text="No information." HorizontalAlignment="Center"/>
                             <StackPanel x:Name="webStackPanel" />
-                            <TextBlock TextWrapping="Wrap" Text="Blog"/>
+                            <TextBlock TextWrapping="Wrap" Text="Blog" FontSize="50"  FontWeight="Bold"/>
                             <StackPanel x:Name="blogStackPanel" />
-                            
+                            <TextBlock Name="blog_noinfo"  TextWrapping="Wrap" Text="No information." HorizontalAlignment="Center"/>
+
+
                         </StackPanel>
                         
 
